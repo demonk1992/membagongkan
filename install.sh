@@ -114,7 +114,9 @@ END
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 
-
+# l2tp
+wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/l2tp.sh
+bash l2tp.sh
 
 echo "      INSTALL SELESAI RASANYA SANGAT MEMBAGONGKAN !" 
 echo "========================================"
