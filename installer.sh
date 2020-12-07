@@ -103,7 +103,6 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-
 [dropbear]
 accept = 443
 connect = 127.0.0.1:3128
@@ -136,18 +135,16 @@ wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/userlimit.sh
 wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/userlimitssh.sh
 wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/autokill.sh
 wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/userexpired.sh
-echo "* * * * * root sleep 10; ./userlimit.sh 2" > /etc/cron.d/userlimit2
-echo "* * * * * root sleep 20; ./userlimit.sh 2" > /etc/cron.d/userlimit4
-echo "* * * * * root sleep 30; ./userlimit.sh 2" > /etc/cron.d/userlimit6
-echo "* * * * * root sleep 40; ./userlimit.sh 2" > /etc/cron.d/userlimit8
-echo "* * * * * root sleep 50; ./userlimit.sh 2" > /etc/cron.d/userlimit11
-echo "0 1 * * * root ./userexpired.sh" > /etc/cron.d/userexpired
-echo "0 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache1
-echo "10 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache2
-echo "20 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache3
-echo "30 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache4
-echo "40 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache5
-echo "50 * * * * root ./clearcache.sh" > /etc/cron.d/clearcache6
+echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimitreboot
+echo "* * * * * root ./userlimit.sh 1" > /etc/cron.d/userlimit1
+echo "* * * * * root sleep 10; ./userlimit.sh 1" > /etc/cron.d/userlimit2
+echo "* * * * * root sleep 20; ./userlimit.sh 1" > /etc/cron.d/userlimit3
+echo "* * * * * root sleep 30; ./userlimit.sh 1" > /etc/cron.d/userlimit4
+echo "* * * * * root sleep 40; ./userlimit.sh 1" > /etc/cron.d/userlimit5
+echo "* * * * * root sleep 50; ./userlimit.sh 1" > /etc/cron.d/userlimit6
+service cron restart
+service ssh restart
+service dropbear restart
 
 # clear cache
 wget https://raw.githubusercontent.com/demonk1992/membagongkan/main/clearcache.sh
