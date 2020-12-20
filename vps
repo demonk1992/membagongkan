@@ -148,6 +148,10 @@ service stunnel4 restart
 
 # Upgrade Stunnel
 cd
+groupadd -g 51 stunnel &&
+useradd -c "stunnel Daemon" -d /var/lib/stunnel \
+        -g stunnel -s /bin/false -u 51 stunnel
+
 wget ftp://ftp.stunnel.org/stunnel/archive/5.x/stunnel-5.57.tar.gz
 tar zxf stunnel-5.57.tar.gz
 cd stunnel-5.57
